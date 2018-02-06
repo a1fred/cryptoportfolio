@@ -2,6 +2,7 @@ from setuptools import setup
 
 requirements = [
     'requests',
+    'monotable',
 ]
 
 test_requirements = requirements + [

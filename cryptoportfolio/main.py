@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import importlib.machinery
-
 from decimal import Decimal
+
+from monotable import table
 
 from cryptoportfolio.lib.coinmarketcap import get_price_usd
 from cryptoportfolio.utils.io import format_usd, format_curr_balance
@@ -55,17 +56,14 @@ def print_summary(settings):
                 else:
                     curr_dict[symbol]['balance'] += balance
                     curr_dict[symbol]['balance_usd'] += balance_usd
+    cells = []
     for symbol, data in reversed(sorted(curr_dict.items(), key=lambda x: x[1]['balance_usd'])):
         balance = data['balance']
         balance_usd = data['balance_usd']
         decimal_places = data['decimal_places']
         total_usd += balance_usd
-        print("{symbol} {balance} {balance_usd}$".format(
-            symbol=symbol,
-            balance=format_curr_balance(balance, decimal_places),
-            balance_usd=format_usd(balance_usd),
-        ))
-
+        cells.append((symbol, format_curr_balance(balance, decimal_places), format_usd(balance_usd)))
+    print(table.table(cellgrid=cells))
     print("Total: %s$" % format_usd(total_usd))
 
 
