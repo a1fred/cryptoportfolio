@@ -1,20 +1,28 @@
 # Cryptoportfolio
-Show your coins portfilio tool for conky or geektool.  
-Can show percentile wallet values if you own only percent of all balance.
+Tool for show your coins portfilio. Easily integrates with
+[conky](https://github.com/brndnmtthws/conky) or 
+[geektool](https://www.tynsoe.org/v2/geektool/).  
+
 
 ### Features
-##### Supported wallets
+* support popular coins
+* support mining pool balance
+* automatically find all tokens on eth or stellar wallets
+* create percentile wallet if you own only percent of all balance
+* simple api easy to use as library in your project
+
+Supported wallets:
 * BTC
 * ETH, automatically find all tokens
 * EMC
 * MAGI
 * STELLAR, automatically find all tokens
 
-##### Supported pools
+Supported pools:
 * nicehash.com
 * pool.bitcoin.com
 
-### Setup
+### Set up
 ##### Installation
 Clone this repo and run 
 ```shell
