@@ -16,6 +16,8 @@ setup(
         'cryptoportfolio',
         'cryptoportfolio.lib',
         'cryptoportfolio.utils',
+        'cryptoportfolio.wallets',
+        'cryptoportfolio.miningpools',
     ],
     url='',
     entry_points={

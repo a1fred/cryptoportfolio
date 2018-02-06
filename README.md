@@ -56,5 +56,6 @@ Total: 32021331.96$
 
 # TODO
 * Add some tests
+* inifile configuration
 * Add more coins and pools
 * Add siacoin when there is block explorer
