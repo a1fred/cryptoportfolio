@@ -2,30 +2,30 @@
 Show your coins portfilio tool for conky or geektool.  
 Can show percentile wallet values if you own only percent of all balance.
 
-## Features
-### Supported wallets
+### Features
+##### Supported wallets
 * BTC
 * ETH, automatically find all tokens
 * EMC
 * MAGI
 * STELLAR, automatically find all tokens
 
-### Supported pools
+##### Supported pools
 * nicehash.com
 * pool.bitcoin.com
 
-## Setup
-### Installation
+### Setup
+##### Installation
 Clone this repo and run 
 ```shell
 $ python3 setup.py install
 ```
 Maybe upload to pypi later.
 
-### Configure
-See settings-sample.py
+##### Configure
+See example in [settings-sample.py](settings-sample.py)
 
-### Run
+##### Run
 Show detailed portfolio
 ```shell
 $ cryptoportfolio ./conf.py
@@ -35,10 +35,9 @@ Show summary
 ```shell
 $ cryptoportfolio --summary ./conf.py
 ```
-
-### Sample output
+Sample output:
 ```sh
-$ pipenv run python3 main.py -s ./conf.py
+$ python3 main.py -s ./conf.py
 BTC    4352.8092      30202532.40$
 ETH    2399.3909      1674997.95$
 CANDY  153625956.0001 129504.23$
@@ -54,8 +53,10 @@ ZIBER  468.5654       0.00$
 Total: 32021331.96$
 ```
 
-# TODO
+### TODO
 * Add some tests
+* Better configuration documentation
+* Maybe python2 support because its mac os default
 * inifile configuration
 * Add more coins and pools
 * Add siacoin when there is block explorer
