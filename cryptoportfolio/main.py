@@ -2,7 +2,7 @@
 import importlib.machinery
 from decimal import Decimal
 
-from monotable import table
+from cryptoportfolio.utils.io import table
 
 from cryptoportfolio.lib.coinmarketcap import get_price_usd
 from cryptoportfolio.utils.io import format_usd, format_curr_balance
@@ -10,9 +10,10 @@ from cryptoportfolio.utils.io import format_usd, format_curr_balance
 
 def print_detail(settings):
     total_usd = Decimal('0.00000')
+    cells = []
 
     for wallet in settings.WALLETS:
-        print("%s:" % wallet.get_name())
+        cells.append((wallet.get_name(), '', ''))
         curr_dict = {}
         for addr, coin_and_tokens_amount in wallet.get_coin_tokens_balance(include_coin_balance=True).items():
             for symbol, balance in coin_and_tokens_amount:
@@ -31,11 +32,8 @@ def print_detail(settings):
             balance_usd = data['balance_usd']
             decimal_places = data['decimal_places']
             total_usd += balance_usd
-            print(" * {symbol} {balance} {balance_usd}$".format(
-                symbol=symbol,
-                balance=format_curr_balance(balance, decimal_places),
-                balance_usd=format_usd(balance_usd),
-            ))
+            cells.append((symbol, format_curr_balance(balance, decimal_places), "$%s" % format_usd(balance_usd)))
+    print(table(cellgrid=cells))
     print("Total: %s$" % format_usd(total_usd))
 
 
@@ -62,8 +60,8 @@ def print_summary(settings):
         balance_usd = data['balance_usd']
         decimal_places = data['decimal_places']
         total_usd += balance_usd
-        cells.append((symbol, format_curr_balance(balance, decimal_places), format_usd(balance_usd)))
-    print(table.table(cellgrid=cells))
+        cells.append((symbol, format_curr_balance(balance, decimal_places), "$%s" % format_usd(balance_usd)))
+    print(table(cellgrid=cells))
     print("Total: %s$" % format_usd(total_usd))
 
 
