@@ -28,17 +28,17 @@ See settings-sample.py
 ### Run
 Show detailed portfolio
 ```shell
-$ cryptoportfolio
+$ cryptoportfolio ./conf.py
 ```
 
 Show summary
 ```shell
-$ cryptoportfolio --summary
+$ cryptoportfolio --summary ./conf.py
 ```
 
 ### Sample output
 ```sh
-$ pipenv run python3 main.py -s
+$ pipenv run python3 main.py -s ./conf.py
 BTC 4352.8092 30202532.40$
 ETH 2399.3909 1674997.95$
 CANDY 153625956.0001 129504.23$

@@ -1,15 +1,16 @@
 #!/usr/bin/python
+import importlib.machinery
+
 from decimal import Decimal
 
 from cryptoportfolio.lib.coinmarketcap import get_price_usd
 from cryptoportfolio.utils.io import format_usd, format_curr_balance
-from settings import WALLETS
 
 
-def print_detail():
+def print_detail(settings):
     total_usd = Decimal('0.00000')
 
-    for wallet in WALLETS:
+    for wallet in settings.WALLETS:
         print("%s:" % wallet.get_name())
         curr_dict = {}
         for addr, coin_and_tokens_amount in wallet.get_coin_tokens_balance(include_coin_balance=True).items():
@@ -37,11 +38,11 @@ def print_detail():
     print("Total: %s$" % format_usd(total_usd))
 
 
-def print_summary():
+def print_summary(settings):
     total_usd = Decimal('0.0')
 
     curr_dict = {}
-    for wallet in WALLETS:
+    for wallet in settings.WALLETS:
         for addr, coin_and_tokens_amount in wallet.get_coin_tokens_balance(include_coin_balance=True).items():
             for symbol, balance in coin_and_tokens_amount:
                 balance_usd = get_price_usd(symbol) * balance
@@ -68,16 +69,19 @@ def print_summary():
     print("Total: %s$" % format_usd(total_usd))
 
 
-def main(summary=False):
+def main(settings_path, summary=False):
+    settings = importlib.machinery.SourceFileLoader('settings', settings_path).load_module()
+
     if summary:
-        print_summary()
+        print_summary(settings)
     else:
-        print_detail()
+        print_detail(settings)
 
 
 def cli():
     import argparse
     parser = argparse.ArgumentParser(description='Show cryptocoins portfilio.')
+    parser.add_argument('settings_path', type=str)
     parser.add_argument('-s', '--summary', dest='summary', action='store_true')
     args = parser.parse_args()
     main(**vars(args))

@@ -1,16 +1,22 @@
 from setuptools import setup
-from pipenv.project import Project
-from pipenv.utils import convert_deps_to_pip
 
+requirements = [
+    'requests',
+]
 
-pfile = Project(chdir=False).parsed_pipfile
-requirements = convert_deps_to_pip(pfile['packages'], r=False)
-test_requirements = convert_deps_to_pip(pfile['dev-packages'], r=False)
+test_requirements = requirements + [
+    'flake8',
+    'mypy',
+]
 
 setup(
     name='cryptoportfolio',
     version='0.1',
-    packages=['cryptoportfolio', ],
+    packages=[
+        'cryptoportfolio',
+        'cryptoportfolio.lib',
+        'cryptoportfolio.utils',
+    ],
     url='',
     entry_points={
         'console_scripts': ['cryptoportfolio=cryptoportfolio.main:cli'],
