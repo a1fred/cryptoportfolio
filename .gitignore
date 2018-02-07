@@ -2,7 +2,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 .idea
+.mypy_cache
 settings.py
 dist
 cryptoportfolio.egg-info
 build
+.eggs
+cryptoportfolio.ini
+cryptoportfolio.yml
+

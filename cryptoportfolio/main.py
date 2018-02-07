@@ -1,83 +1,49 @@
 #!/usr/bin/python
-import importlib.machinery
-from decimal import Decimal
+from yaml import BaseLoader
 
-from cryptoportfolio.utils.io import table
-
-from cryptoportfolio.lib.coinmarketcap import get_price_usd
-from cryptoportfolio.utils.io import format_usd, format_curr_balance
-
-
-def print_detail(settings):
-    total_usd = Decimal('0.00000')
-    cells = []
-
-    for wallet in settings.WALLETS:
-        cells.append((wallet.get_name(), '', ''))
-        curr_dict = {}
-        for addr, coin_and_tokens_amount in wallet.get_coin_tokens_balance(include_coin_balance=True).items():
-            for symbol, balance in coin_and_tokens_amount:
-                balance_usd = get_price_usd(symbol) * balance
-                if symbol not in curr_dict:
-                    curr_dict[symbol] = {
-                        'balance_usd': balance_usd,
-                        'balance': balance,
-                        'decimal_places': wallet.decimal_places,
-                    }
-                else:
-                    curr_dict[symbol]['balance'] += balance
-                    curr_dict[symbol]['balance_usd'] += balance_usd
-        for symbol, data in reversed(sorted(curr_dict.items(), key=lambda x: x[1]['balance_usd'])):
-            balance = data['balance']
-            balance_usd = data['balance_usd']
-            decimal_places = data['decimal_places']
-            total_usd += balance_usd
-            cells.append((symbol, format_curr_balance(balance, decimal_places), "$%s" % format_usd(balance_usd)))
-    print(table(cellgrid=cells))
-    print("Total: %s$" % format_usd(total_usd))
+from cryptoportfolio.cli.printers import (
+    result_iterator,
+    summarize_cells,
+    hide_zeros_cells,
+    hide_usd_zeros_cells,
+    sort_cells,
+    print_results,
+)
 
 
-def print_summary(settings):
-    total_usd = Decimal('0.0')
+def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_total, print_group_total):
+    import yaml
+    settings = yaml.load(settings_path, BaseLoader)
+    settings_path.close()
 
-    curr_dict = {}
-    for wallet in settings.WALLETS:
-        for addr, coin_and_tokens_amount in wallet.get_coin_tokens_balance(include_coin_balance=True).items():
-            for symbol, balance in coin_and_tokens_amount:
-                balance_usd = get_price_usd(symbol) * balance
-                if symbol not in curr_dict:
-                    curr_dict[symbol] = {
-                        'balance_usd': balance_usd,
-                        'balance': balance,
-                        'decimal_places': wallet.decimal_places,
-                    }
-                else:
-                    curr_dict[symbol]['balance'] += balance
-                    curr_dict[symbol]['balance_usd'] += balance_usd
-    cells = []
-    for symbol, data in reversed(sorted(curr_dict.items(), key=lambda x: x[1]['balance_usd'])):
-        balance = data['balance']
-        balance_usd = data['balance_usd']
-        decimal_places = data['decimal_places']
-        total_usd += balance_usd
-        cells.append((symbol, format_curr_balance(balance, decimal_places), "$%s" % format_usd(balance_usd)))
-    print(table(cellgrid=cells))
-    print("Total: %s$" % format_usd(total_usd))
+    defaults = settings.get('defaults', {})
+    groups = settings.get('groups', {})
 
+    if not groups:
+        print("No groups is defined. Exiting.")
 
-def main(settings_path, summary=False):
-    settings = importlib.machinery.SourceFileLoader('settings', settings_path).load_module()
+    results = result_iterator(groups.items(), defaults)
+    if summarize:
+        results = summarize_cells(results)
+    if hide_zeros:
+        results = hide_zeros_cells(results)
+    if hide_usd_zeros:
+        results = hide_usd_zeros_cells(results)
+    if sort:
+        results = sort_cells(results)
 
-    if summary:
-        print_summary(settings)
-    else:
-        print_detail(settings)
+    print_results(results, print_all_total=print_all_total, print_group_total=print_group_total)
 
 
 def cli():
     import argparse
     parser = argparse.ArgumentParser(description='Show cryptocoins portfilio.')
-    parser.add_argument('settings_path', type=str)
-    parser.add_argument('-s', '--summary', dest='summary', action='store_true')
+    parser.add_argument('settings_path', type=argparse.FileType('r'))
+    parser.add_argument('-s', '--summarize', action='store_true', help="Summarize same currencies in one row")
+    parser.add_argument('-z', '--hide-zeros', action='store_true', help="Hide zero crypto balances")
+    parser.add_argument('--sort', action='store_true', help="Sort by USD balance")
+    parser.add_argument('--hide-usd-zeros', action='store_true', help="Hide zero USD balances")
+    parser.add_argument('-T', '--print-all-total', action='store_true', help="Print all total USD")
+    parser.add_argument('-t', '--print-group-total', action='store_true', help="Print group total USD")
     args = parser.parse_args()
     main(**vars(args))

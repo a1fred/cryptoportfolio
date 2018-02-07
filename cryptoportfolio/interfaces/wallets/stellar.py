@@ -3,16 +3,16 @@ from typing import List, Tuple
 import requests
 from decimal import Decimal
 
-from cryptoportfolio.wallets.abc import Wallet
+from cryptoportfolio.interfaces.base import CryptoCoinWallet
 
 
-class StellarWallet(Wallet):
+class StellarWallet(CryptoCoinWallet):
     decimal_places = 18
     symbol = "XLM"
 
-    def _get_addr_coin_balance(self, addr: str) -> Decimal:
+    def _get_addr_coin_balance(self) -> Decimal:
         data = requests.get(
-            "https://horizon.stellar.org/accounts/%s" % addr
+            "https://horizon.stellar.org/accounts/%s" % self.addr
         ).json()
 
         balance = Decimal('0.0')
@@ -21,9 +21,9 @@ class StellarWallet(Wallet):
                 balance += Decimal(b['balance'])
         return balance
 
-    def _get_addr_coin_tokens_balance(self, addr: str) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coin_tokens_balance(self) -> List[Tuple[str, Decimal]]:
         data = requests.get(
-            "https://horizon.stellar.org/accounts/%s" % addr
+            "https://horizon.stellar.org/accounts/%s" % self.addr
         ).json()
 
         res = []

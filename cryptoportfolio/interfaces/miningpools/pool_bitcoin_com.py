@@ -3,21 +3,16 @@ from decimal import Decimal
 
 import requests
 
-from cryptoportfolio.wallets.abc import Wallet
-
-NICEHASH_ADDRS = [
-    # Id, key
-
-]
+from cryptoportfolio.interfaces.base import Address
 
 
-class PoolBitcoinCom(Wallet):
+class PoolBitcoinCom(Address):
     decimal_places = 18
     symbol = "BTC"
 
-    def __init__(self, name: str, api_key: str, percent_owned=Decimal('100'), decimal_places: int=None):
+    def __init__(self, api_key: str, **kwargs) -> None:
         self.api_key = api_key
-        super().__init__(name=name, addrs=[name, ], percent_owned=percent_owned, decimal_places=decimal_places)
+        super().__init__(**kwargs)
 
     __api_data = None
 
@@ -27,7 +22,7 @@ class PoolBitcoinCom(Wallet):
                 "https://console.pool.bitcoin.com/srv/api/user?apikey=%s" % self.api_key).json()
         return self.__api_data
 
-    def _get_addr_coin_tokens_balance(self, addr: str) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coin_tokens_balance(self) -> List[Tuple[str, Decimal]]:
         result = self._get_api_data()
         if Decimal(result['bitcoinCashBalance']) != Decimal('0.0'):
             return [
@@ -36,6 +31,6 @@ class PoolBitcoinCom(Wallet):
         else:
             return []
 
-    def _get_addr_coin_balance(self, addr: str) -> Decimal:
+    def _get_addr_coin_balance(self) -> Decimal:
         result = self._get_api_data()
         return Decimal(result['bitcoinBalance'])

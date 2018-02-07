@@ -31,21 +31,39 @@ $ python3 setup.py install
 Maybe upload to pypi later.
 
 ##### Configure
-See example in [settings-sample.py](settings-sample.py)
+See example in [sample.yml](sample.yml)
 
 ##### Run
+Flags
+```sh
+$ cryptoportfolio -h
+positional arguments:
+  settings_path
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s, --summarize       Summarize same currencies in one row
+  -z, --hide-zeros      Hide zero crypto balances
+  --sort                Sort by USD balance
+  --hide-usd-zeros      Hide zero USD balances
+  -T, --print-all-total
+                        Print all total USD
+  -t, --print-group-total
+                        Print group total USD
+
+```
 Show detailed portfolio
 ```shell
-$ cryptoportfolio ./conf.py
+$ cryptoportfolio ./conf.yml
 ```
 
 Show summary
 ```shell
-$ cryptoportfolio --summary ./conf.py
+$ cryptoportfolio --summary ./conf.yml
 ```
 Sample output:
 ```sh
-$ python3 main.py -s ./conf.py
+$ python3 main.py -s ./conf.yml
 BTC    4352.8092      30202532.40$
 ETH    2399.3909      1674997.95$
 CANDY  153625956.0001 129504.23$
@@ -62,9 +80,7 @@ Total: 32021331.96$
 ```
 
 ### TODO
-* Add some tests
 * Better configuration documentation
 * Maybe python2 support because its mac os default
-* inifile configuration
 * Add more coins and pools
 * Add siacoin when there is block explorer

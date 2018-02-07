@@ -1,0 +1,22 @@
+defaults:
+  decimal_places: 4
+
+groups:
+  test:
+    - interface: ethereum
+      addr: 0xe99356bde974bbe08721d77712168fa070aa8da4
+    - interface: bitcoin
+      addr: 1Hz96kJKF2HLPGY15JWLB5m9qGNxvt8tHJ
+      percent_owned: 10
+    - interface: magi
+      addr: 958cdNtPsrU5ohF2qULhnSFkdu99JCrDgv
+    - interface: stellar
+      addr: GAKOQTDQYEV4KZI2EGEL4OS4AA6XHAXFQUAJ52C7B4H7SCL2XVKQYJAR
+    - interface: emercoin
+      addr: EQcFiCWANf3jziUumewwuTHMzMxa4a4QDw
+# TODO
+#    - interface: nicehash
+#      id:
+#      key:
+#    - interface: bitcoin_com
+#      api_key:

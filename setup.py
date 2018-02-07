@@ -3,6 +3,7 @@ from setuptools import setup
 requirements = [
     'requests',
     'monotable',
+    'PyYAML==3.12'
 ]
 
 test_requirements = requirements + [
@@ -15,10 +16,12 @@ setup(
     version='0.1',
     packages=[
         'cryptoportfolio',
+        'cryptoportfolio.interfaces',
+        'cryptoportfolio.interfaces.miningpools',
+        'cryptoportfolio.interfaces.wallets',
+        'cryptoportfolio.cli',
         'cryptoportfolio.lib',
         'cryptoportfolio.utils',
-        'cryptoportfolio.wallets',
-        'cryptoportfolio.miningpools',
     ],
     url='',
     entry_points={

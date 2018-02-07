@@ -1,20 +1,21 @@
-from decimal import Decimal, ROUND_UP
+from decimal import Decimal, ROUND_DOWN
+from typing import Iterable
 
 from monotable.table import MonoTable
 
 
 def format_usd(price_usd: Decimal) -> Decimal:
-    return price_usd.quantize(Decimal('0.01'), rounding=ROUND_UP)
+    return price_usd.quantize(Decimal('0.01'), rounding=ROUND_DOWN)
 
 
 def format_curr_balance(b: Decimal, decimal_places) -> Decimal:
-    return b.quantize(pow(Decimal('1.0'), decimal_places), rounding=ROUND_UP)
+    return b.quantize(Decimal(pow(1, decimal_places)), rounding=ROUND_DOWN)
 
 
-def table(headings=(),       # type: Iterable[str]
-          formats=(),        # type: Iterable[str]
-          cellgrid=((),),    # type: Iterable[Iterable[object]]
-          title='',          # type: str
+def table(headings: Iterable[str]=(),
+          formats: Iterable[str]=(),
+          cellgrid: Iterable[Iterable[object]]=((),),
+          title: str='',
           ):
     # type: (...) -> str
     """Wrapper to :py:meth:`monotable.table.MonoTable.table`."""
