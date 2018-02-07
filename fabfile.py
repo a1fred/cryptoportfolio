@@ -32,3 +32,4 @@ def upload():
     version = local("python3 setup.py -V", capture=True).stdout.strip()
     local("twine upload dist/*")
     local("git tag -f %s" % version)
+    local("git push origin --tags")
