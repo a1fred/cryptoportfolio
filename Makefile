@@ -8,3 +8,9 @@ test:
 
 install: test
 	python3 setup.py install
+
+dist:
+	python3 setup.py sdist
+
+upload: dist
+	twine upload dist/*

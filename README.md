@@ -24,11 +24,15 @@ Supported pools:
 
 ### Set up
 ##### Installation
+######From source
 Clone this repo and run 
 ```shell
 $ python3 setup.py install
 ```
-Maybe upload to pypi later.
+###### From pypi
+```shell
+$ pip3 install cryptoportfolio
+```
 
 ##### Configure
 See example in [sample.yml](sample.yml)

@@ -23,7 +23,7 @@ setup(
         'cryptoportfolio.lib',
         'cryptoportfolio.utils',
     ],
-    url='',
+    url='https://github.com/a1fred/cryptoportfolio',
     entry_points={
         'console_scripts': ['cryptoportfolio=cryptoportfolio.main:cli'],
     },
