@@ -84,3 +84,4 @@ Total: 32021331.96$
 * Maybe python2 support because its mac os default
 * Add more coins and pools
 * Add siacoin when there is block explorer
+* Add simple coin/token tickers without wallet
