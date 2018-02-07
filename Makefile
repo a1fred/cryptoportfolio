@@ -13,4 +13,5 @@ dist:
 	python3 setup.py sdist
 
 upload: dist
+	sh -c "git tag \$(python3 setup.py -V)"
 	twine upload dist/*

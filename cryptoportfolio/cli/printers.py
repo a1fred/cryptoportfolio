@@ -114,4 +114,4 @@ def print_results(
                 print("Total: $%s" % format_usd(group_total))
 
     if print_all_total:
-        print("\nAll total: $%s" % format_usd(all_total))
+        print("All total: $%s" % format_usd(all_total))

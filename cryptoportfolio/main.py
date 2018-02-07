@@ -9,6 +9,7 @@ from cryptoportfolio.cli.printers import (
     sort_cells,
     print_results,
 )
+from cryptoportfolio.lib.coinmarketcap import get_price_usd
 
 
 def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_total, print_group_total):
@@ -19,13 +20,14 @@ def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_t
     try:
         defaults = settings.get('defaults', {})
         groups = settings.get('groups', {})
+        tickers = settings.get('tickers', {})
     except AttributeError:
-        # AttributeError: 'str' object has no attribute 'get' raises if wroing file type
+        # AttributeError: 'str' object has no attribute 'get' raises if wrong file type
         print("Wrong configuration file type")
         return
 
-    if not groups:
-        print("No groups is defined. Exiting.")
+    if not groups and not tickers:
+        print("No groups and no tickers is defined. Exiting.")
 
     results = result_iterator(groups.items(), defaults)
     if summarize:
@@ -38,6 +40,11 @@ def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_t
         results = sort_cells(results)
 
     print_results(results, print_all_total=print_all_total, print_group_total=print_group_total)
+
+    if tickers:
+        print("\nTickers:")
+        for symbol in tickers:
+            print(" * %-4s $%s" % (symbol, get_price_usd(symbol)))
 
 
 def cli():

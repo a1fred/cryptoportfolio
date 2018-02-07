@@ -20,3 +20,7 @@ groups:
 #      key:
 #    - interface: bitcoin_com
 #      api_key:
+
+tickers:
+  - BTC
+  - ETH

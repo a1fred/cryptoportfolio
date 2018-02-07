@@ -1,5 +1,7 @@
 from setuptools import setup
 
+version = '0.2'
+
 requirements = [
     'requests',
     'monotable',
@@ -13,7 +15,7 @@ test_requirements = requirements + [
 
 setup(
     name='cryptoportfolio',
-    version='0.1',
+    version=version,
     packages=[
         'cryptoportfolio',
         'cryptoportfolio.interfaces',
