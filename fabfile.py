@@ -23,6 +23,10 @@ def dist():
 
 @task
 def upload():
+    unstaged_changes = local("git status -s", capture=True).stdout.strip()
+    if unstaged_changes:
+        raise ValueError("Tree has uncommited changes, commit first")
+
     clean()
     dist()
     version = local("python3 setup.py -V", capture=True).stdout.strip()
