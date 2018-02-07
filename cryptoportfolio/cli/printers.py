@@ -51,7 +51,7 @@ class BasePrinter:
 
 
 def result_iterator(
-        groups: Iterator[Tuple[str, List]],
+        groups: Iterable[Tuple[str, List]],
         defaults: Dict
 ) -> Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]:
     for group_name, wallets in groups:
@@ -80,14 +80,14 @@ def hide_zeros_cells(
         groups: Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]
 ) -> Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]:
     for group_name, cells in groups:
-        yield group_name, filter(lambda x: x[1] != Decimal('0'), cells)
+        yield group_name, filter(lambda x: x[1] != Decimal('0.00'), cells)
 
 
 def hide_usd_zeros_cells(
         groups: Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]
 ) -> Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]:
     for group_name, cells in groups:
-        yield group_name, filter(lambda x: x[2] != Decimal('0'), cells)
+        yield group_name, filter(lambda x: x[2] != Decimal('0.00'), cells)
 
 
 def sort_cells(

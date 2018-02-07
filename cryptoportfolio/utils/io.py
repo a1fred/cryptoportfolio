@@ -9,7 +9,7 @@ def format_usd(price_usd: Decimal) -> Decimal:
 
 
 def format_curr_balance(b: Decimal, decimal_places) -> Decimal:
-    return b.quantize(Decimal(pow(1, decimal_places)), rounding=ROUND_DOWN)
+    return b.quantize(Decimal(pow(Decimal('1.0'), decimal_places)), rounding=ROUND_DOWN)  # type: ignore
 
 
 def table(headings: Iterable[str]=(),

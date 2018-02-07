@@ -16,8 +16,13 @@ def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_t
     settings = yaml.load(settings_path, BaseLoader)
     settings_path.close()
 
-    defaults = settings.get('defaults', {})
-    groups = settings.get('groups', {})
+    try:
+        defaults = settings.get('defaults', {})
+        groups = settings.get('groups', {})
+    except AttributeError:
+        # AttributeError: 'str' object has no attribute 'get' raises if wroing file type
+        print("Wrong configuration file type")
+        return
 
     if not groups:
         print("No groups is defined. Exiting.")
