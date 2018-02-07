@@ -23,6 +23,7 @@ def dist():
 
 @task
 def upload():
+    clean()
     dist()
     version = local("python3 setup.py -V", capture=True).stdout.strip()
     local("twine upload dist/*")
