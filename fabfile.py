@@ -25,5 +25,5 @@ def dist():
 def upload():
     dist()
     version = local("python3 setup.py -V", capture=True).stdout.strip()
-    local("git tag %s" % version)
     local("twine upload dist/*")
+    local("git tag -f %s" % version)
