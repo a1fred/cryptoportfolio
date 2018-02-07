@@ -29,7 +29,7 @@ Clone this repo and run
 ```shell
 $ python3 setup.py install
 ```
-###### From pypi
+###### From [pypi](https://pypi.python.org/pypi/cryptoportfolio)
 ```shell
 $ pip3 install cryptoportfolio
 ```
