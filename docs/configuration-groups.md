@@ -96,6 +96,15 @@ Options:
  * `api_key` required, string  
     api key
 
+#### [f2pool.com](https://www.f2pool.com/)
+Interface name: `f2pool`  
+Works using [rest api](https://www.f2pool.com/developer/api)    
+Options:
+ * [universal options](#universal-options)
+ * `currency` required, string
+   Your currency  
+ * `user` required, string  
+   Username
 
 ## Example
 ```yml

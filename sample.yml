@@ -14,6 +14,12 @@ groups:
       addr: GAKOQTDQYEV4KZI2EGEL4OS4AA6XHAXFQUAJ52C7B4H7SCL2XVKQYJAR
     - interface: emercoin
       addr: EQcFiCWANf3jziUumewwuTHMzMxa4a4QDw
+
+    - interface: f2pool
+      name: f2pool
+      currency: bitcoin
+      user: btc
+
 # TODO
 #    - interface: nicehash
 #      id:
