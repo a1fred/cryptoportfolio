@@ -28,9 +28,8 @@ class F2PoolWallet(Address):
         self.user = user
         super().__init__(**kwargs)
 
-    def _get_addr_coin_tokens_balance(self) -> List[Tuple[str, Decimal]]:
-        return []
-
-    def _get_addr_coin_balance(self) -> Decimal:
+    def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
         result = requests.get("http://api.f2pool.com/%s/%s" % (self.currency, self.user)).json()
-        return Decimal(result['balance'])
+        return [
+            (self.symbol, Decimal(result['balance']))
+        ]

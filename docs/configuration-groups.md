@@ -106,6 +106,20 @@ Options:
  * `user` required, string  
    Username
 
+## Exchanges
+cryptoportfolio can show your exchange deposits
+
+#### [poloniex.com](https://poloniex.com/)
+Interface name: `poloniex`  
+Works using [api](https://poloniex.com/support/api/)  
+You can get api keys in [api settings page](https://poloniex.com/apiKeys)  
+Options:
+ * [universal options](#universal-options)
+ * `api_key` required, string
+   API key  
+ * `api_secret` required, string  
+   API secret
+
 ## Example
 ```yml
 groups:
@@ -123,10 +137,16 @@ groups:
       addr: GAKOQTDQYEV4KZI2EGEL4OS4AA6XHAXFQUAJ52C7B4H7SCL2XVKQYJAR
     - interface: emercoin
       addr: EQcFiCWANf3jziUumewwuTHMzMxa4a4QDw
+
     - interface: nicehash
       name: nicehash
       id: ...
       key: ...
     - interface: bitcoin_com
       api_key: ...
+
+    - interface: poloniex
+      name: poloniex
+      api_key: ...
+      api_secret: ...
 ```

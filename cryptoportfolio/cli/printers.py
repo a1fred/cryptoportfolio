@@ -39,9 +39,12 @@ class BasePrinter:
     def fill_cells(self, group: List[Dict]) -> None:
         for wallet_dict in group:
             wallet = get_wallet_from_dict(wallet_dict, self.defaults)
-            for symbol, balance in wallet.get_coin_tokens_balance(include_coin_balance=True):
+            for symbol, balance in wallet.get_coins_and_tokens_balance():
                 balance_usd = get_price_usd(symbol) * balance
-                cell_name = symbol if symbol == wallet.name else "%s (%s)" % (symbol, wallet.name)
+                if wallet.name is not None:
+                    cell_name = "%s (%s)" % (symbol, wallet.name)
+                else:
+                    cell_name = symbol
                 self.append_cell(
                     cell_name,
                     balance,

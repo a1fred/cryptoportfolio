@@ -14,25 +14,12 @@ class Address:
         self.percent_owned = Decimal(percent_owned) / Decimal('100')
         if decimal_places is not None:
             self.decimal_places = int(decimal_places)
-        self.name = name or self.symbol
+        self.name = name
 
     def format_balance(self, b: Decimal) -> Decimal:
         return format_curr_balance(b, self.decimal_places)
 
-    def get_coin_price_usd(self) -> Decimal:
-        return get_price_usd(self.symbol)
-
-    def get_token_price_usd(self, token_symbol) -> Decimal:
-        return get_price_usd(token_symbol)
-
-    def get_coin_balance(self) -> Tuple[str, Decimal]:
-        """
-        :return: ("0xETHADDR", Decimal("23.0")),
-        """
-        balance = self._get_addr_coin_balance()
-        return self.symbol, balance * self.percent_owned
-
-    def get_coin_tokens_balance(self, include_coin_balance=False) -> List[Tuple[str, Decimal]]:
+    def get_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
         """
         :return: [
             ("EOS": Decimal("10.0")),
@@ -41,17 +28,12 @@ class Address:
         """
 
         result = []
-        tokens_balances = self._get_addr_coin_tokens_balance()
+        tokens_balances = self._get_addr_coins_and_tokens_balance()
         for token_symbol, balance in tokens_balances:
             result.append((token_symbol, balance * self.percent_owned))
-        if include_coin_balance:
-            result.insert(0, (self.symbol, self._get_addr_coin_balance() * self.percent_owned))
         return result
 
-    def _get_addr_coin_balance(self) -> Decimal:
-        raise NotImplementedError
-
-    def _get_addr_coin_tokens_balance(self,) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self,) -> List[Tuple[str, Decimal]]:
         raise NotImplementedError
 
 

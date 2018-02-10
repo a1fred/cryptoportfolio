@@ -12,6 +12,10 @@ from cryptoportfolio.interfaces.wallets import (
     stellar,
 )
 
+from cryptoportfolio.interfaces.exchanges import (
+    poloniex,
+)
+
 
 INTERFACES_MAPPING = {
     'f2pool': f2pool.F2PoolWallet,
@@ -22,4 +26,5 @@ INTERFACES_MAPPING = {
     'ethereum': ethereum.EthereumWallet,
     'magi': magi.MagiWallet,
     'stellar': stellar.StellarWallet,
+    'poloniex': poloniex.PoloniexWallet,
 }

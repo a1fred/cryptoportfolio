@@ -7,7 +7,7 @@ Tool for show your coins portfilio. Easily integrates with
 
 
 ### Features
-* Show balance on coin wallets and mining pools
+* Show balance on coin wallets,exchanges and mining pools
 * Automatically find all tokens on ethereum or stellar wallets
 * Show your owned balance from shared wallet by settings percent-owned
 * Simple api easy to use as library in your project

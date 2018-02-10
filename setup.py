@@ -1,11 +1,11 @@
 from setuptools import setup
 
-version = '0.2.4'
+version = '0.2.5'
 
 requirements = [
     'requests',
     'monotable',
-    'PyYAML==3.12'
+    'PyYAML==3.12',
 ]
 
 test_requirements = requirements + [
