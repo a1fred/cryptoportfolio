@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.2.5'
+version = '0.2.6'
 
 requirements = [
     'requests',
@@ -21,6 +21,7 @@ setup(
         'cryptoportfolio.interfaces',
         'cryptoportfolio.interfaces.miningpools',
         'cryptoportfolio.interfaces.wallets',
+        'cryptoportfolio.interfaces.exchanges',
         'cryptoportfolio.cli',
         'cryptoportfolio.lib',
         'cryptoportfolio.utils',
