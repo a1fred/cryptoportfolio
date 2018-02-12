@@ -1,8 +1,7 @@
-from typing import List, Tuple
+from typing import List, Tuple, Iterable
 
 from decimal import Decimal
 
-from cryptoportfolio.lib.coinmarketcap import get_price_usd
 from cryptoportfolio.utils.io import format_curr_balance
 
 
@@ -33,7 +32,7 @@ class Address:
             result.append((token_symbol, balance * self.percent_owned))
         return result
 
-    def _get_addr_coins_and_tokens_balance(self,) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self,) -> Iterable[Tuple[str, Decimal]]:
         raise NotImplementedError
 
 

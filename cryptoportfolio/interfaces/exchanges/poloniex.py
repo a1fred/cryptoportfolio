@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import Tuple, Iterable
 from decimal import Decimal
 from urllib.parse import urlencode
 import time
@@ -42,5 +42,5 @@ class PoloniexWallet(Address):
             if balance_dec != Decimal("0.0"):
                 yield symbol, balance_dec
 
-    def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self) -> Iterable[Tuple[str, Decimal]]:
         yield from self.balance_request()

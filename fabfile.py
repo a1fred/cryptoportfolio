@@ -1,8 +1,10 @@
 from fabric.api import local, task
 
+
 @task
 def clean():
     local("rm -rf .eggs build cryptoportfolio.egg-info dist .mypy_cache")
+
 
 @task
 def test():

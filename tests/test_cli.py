@@ -1,10 +1,13 @@
 import unittest
+from io import StringIO
+from unittest.mock import patch
 
 
 class CliTests(unittest.TestCase):
     test_conf = './sample.yml'
 
-    def test_flags(self):
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_flags(self, mock_stdout):
         from cryptoportfolio.main import main
         main(
             open(self.test_conf, 'r'),

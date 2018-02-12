@@ -21,36 +21,20 @@ def get_wallet_from_dict(wallet_data: Dict, defaults: Dict) -> Address:
     return INTERFACES_MAPPING[interface](**data)
 
 
-class BasePrinter:
-    def __init__(self, defaults=None):
-        self._cells = []
-        self.defaults = defaults or {}
-
-    def append_cell(self, name: str, crypto_balance: Decimal, crypto_decimal_places: int, usd_balance: Decimal) -> None:
-        self._cells.append((
-            name,
-            format_curr_balance(crypto_balance, crypto_decimal_places),
-            format_usd(usd_balance)
-        ))
-
-    def get_cells(self) -> Iterator[Tuple[str, Decimal, Decimal]]:
-        return self._cells
-
-    def fill_cells(self, group: List[Dict]) -> None:
-        for wallet_dict in group:
-            wallet = get_wallet_from_dict(wallet_dict, self.defaults)
-            for symbol, balance in wallet.get_coins_and_tokens_balance():
-                balance_usd = get_price_usd(symbol) * balance
-                if wallet.name is not None:
-                    cell_name = "%s (%s)" % (symbol, wallet.name)
-                else:
-                    cell_name = symbol
-                self.append_cell(
-                    cell_name,
-                    balance,
-                    wallet.decimal_places,
-                    balance_usd
-                )
+def address_query(wallets: List[Dict], defaults) -> Iterator[Tuple[str, Decimal, Decimal]]:
+    for wallet_dict in wallets:
+        wallet = get_wallet_from_dict(wallet_dict, defaults)
+        for symbol, balance in wallet.get_coins_and_tokens_balance():
+            balance_usd = get_price_usd(symbol) * balance
+            if wallet.name is not None:
+                cell_name = "%s (%s)" % (symbol, wallet.name)
+            else:
+                cell_name = symbol
+            yield (
+                cell_name,
+                format_curr_balance(balance, wallet.decimal_places),
+                format_usd(balance_usd)
+            )
 
 
 def result_iterator(
@@ -58,9 +42,7 @@ def result_iterator(
         defaults: Dict
 ) -> Iterator[Tuple[str, Iterator[Tuple[str, Decimal, Decimal]]]]:
     for group_name, wallets in groups:
-        printer = BasePrinter(defaults)
-        printer.fill_cells(wallets)
-        yield group_name, printer.get_cells()
+        yield group_name, address_query(wallets, defaults)
 
 
 def summarize_cells(
