@@ -17,5 +17,8 @@ class NicehashWallet(Address):
     def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
         result = requests.get("https://api.nicehash.com/api?method=balance&id=%s&key=%s" % (self.id, self.key)).json()
         return [
-            ("BTC", Decimal(result['result']['balance_confirmed']))
+            (
+                "BTC",
+                Decimal(result['result']['balance_confirmed']) + Decimal(result['result']['balance_pending'])
+            )
         ]
