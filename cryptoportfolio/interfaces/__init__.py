@@ -10,6 +10,7 @@ from cryptoportfolio.interfaces.wallets import (
     ethereum,
     magi,
     stellar,
+    nem,
 )
 
 from cryptoportfolio.interfaces.exchanges import (
@@ -27,4 +28,5 @@ INTERFACES_MAPPING = {
     'magi': magi.MagiWallet,
     'stellar': stellar.StellarWallet,
     'poloniex': poloniex.PoloniexWallet,
+    'nem': nem.NemWallet,
 }

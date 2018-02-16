@@ -73,6 +73,16 @@ Options:
  * `addr` required, string
     stellar address
 
+#### [NEM](https://nem.io/)
+NEM address  
+Interface name: `nem`  
+Works using undocumnted balance request on [http://explorer.ournem.com/](http://explorer.ournem.com/)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    nem wallet address
+
+
 # Mining pools
 cryptoportfolio can show your mining pool confirmed balance.
 
