@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.2.7'
+version = '0.2.8'
 
 requirements = [
     'requests',
@@ -35,8 +35,12 @@ setup(
     author_email='demalf@gmail.com',
     description='Show your coins portfolio',
     classifiers=[
+        'Topic :: Office/Business :: Financial',
+        'Environment :: Console',
+        'Operating System :: POSIX :: Linux',
+        'Operating System :: MacOS :: MacOS X',
         'Development Status :: 4 - Beta',
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
     ],
     install_requires=requirements,
     tests_require=test_requirements,

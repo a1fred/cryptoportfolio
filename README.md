@@ -1,6 +1,8 @@
 # Cryptoportfolio
 [![Build Status](https://travis-ci.org/a1fred/cryptoportfolio.svg?branch=master)](https://travis-ci.org/a1fred/cryptoportfolio)
 [![PyPI version](https://badge.fury.io/py/cryptoportfolio.svg)](https://badge.fury.io/py/cryptoportfolio)
+[![PyPI](https://img.shields.io/pypi/pyversions/cryptoportfolio.svg)](https://pypi.python.org/pypi/cryptoportfolio/0.2.7)
+
 
 Tool for show your coins portfilio. Easily integrates with
 [conky](https://github.com/brndnmtthws/conky) or 
