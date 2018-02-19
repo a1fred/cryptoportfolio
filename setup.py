@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.2.8'
+version = '0.2.9'
 
 requirements = [
     'requests',
@@ -36,6 +36,8 @@ setup(
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X',
         'Development Status :: 4 - Beta',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=requirements,

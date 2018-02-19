@@ -52,7 +52,6 @@ Total: 32021331.96$
 ```
 
 ### TODO
-* Maybe python2 support because its mac os default
 * Add more coins and pools
 * Add siacoin when there is block explorer
 * Docs for library usage
