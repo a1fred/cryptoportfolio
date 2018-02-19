@@ -1,24 +1,22 @@
-from typing import List, Tuple, Iterable
-
 from decimal import Decimal
 
 from cryptoportfolio.utils.io import format_curr_balance
 
 
-class Address:
-    decimal_places: int
-    symbol: str
+class Address(object):
+    decimal_places = None
+    symbol = None
 
-    def __init__(self, percent_owned=Decimal('100'), decimal_places: int=None, name=None) -> None:
+    def __init__(self, percent_owned=Decimal('100'), decimal_places=None, name=None):
         self.percent_owned = Decimal(percent_owned) / Decimal('100')
         if decimal_places is not None:
             self.decimal_places = int(decimal_places)
         self.name = name
 
-    def format_balance(self, b: Decimal) -> Decimal:
+    def format_balance(self, b):
         return format_curr_balance(b, self.decimal_places)
 
-    def get_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
+    def get_coins_and_tokens_balance(self):
         """
         :return: [
             ("EOS": Decimal("10.0")),
@@ -32,11 +30,11 @@ class Address:
             result.append((token_symbol, balance * self.percent_owned))
         return result
 
-    def _get_addr_coins_and_tokens_balance(self,) -> Iterable[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self):
         raise NotImplementedError
 
 
 class CryptoCoinWallet(Address):
-    def __init__(self, addr: str, **kwargs) -> None:
+    def __init__(self, addr, **kwargs):
         self.addr = addr
-        super().__init__(**kwargs)
+        super(CryptoCoinWallet, self).__init__(**kwargs)

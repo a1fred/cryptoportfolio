@@ -1,4 +1,3 @@
-from typing import Tuple, List
 from decimal import Decimal
 
 import requests
@@ -9,12 +8,12 @@ from cryptoportfolio.interfaces.base import Address
 class NicehashWallet(Address):
     decimal_places = 18
 
-    def __init__(self, id: str, key: str, **kwargs) -> None:
+    def __init__(self, id, key, **kwargs):
         self.id = id
         self.key = key
-        super().__init__(**kwargs)
+        super(NicehashWallet, self).__init__(**kwargs)
 
-    def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self):
         result = requests.get("https://api.nicehash.com/api?method=balance&id=%s&key=%s" % (self.id, self.key)).json()
         return [
             (

@@ -1,5 +1,4 @@
 from decimal import Decimal
-from typing import List, Tuple
 
 import requests
 
@@ -17,7 +16,7 @@ class EthereumWallet(CryptoCoinWallet):
             ).json()
         return self.__ethplorer_data
 
-    def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self):
         results = []
         data = self._get_ethplorer_data()
 

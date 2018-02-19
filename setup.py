@@ -8,10 +8,6 @@ requirements = [
     'PyYAML==3.12',
 ]
 
-test_requirements = requirements + [
-    'flake8',
-    'mypy',
-]
 
 setup(
     name='cryptoportfolio',
@@ -43,6 +39,5 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     install_requires=requirements,
-    tests_require=test_requirements,
     test_suite="tests",
 )

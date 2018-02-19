@@ -1,4 +1,3 @@
-from typing import Tuple, List
 from decimal import Decimal
 
 import requests
@@ -10,9 +9,9 @@ class PoolBitcoinCom(Address):
     decimal_places = 18
     __api_data = None
 
-    def __init__(self, api_key: str, **kwargs) -> None:
+    def __init__(self, api_key, **kwargs):
         self.api_key = api_key
-        super().__init__(**kwargs)
+        super(PoolBitcoinCom, self).__init__(**kwargs)
 
     def _get_api_data(self):
         if not self.__api_data:
@@ -20,7 +19,7 @@ class PoolBitcoinCom(Address):
                 "https://console.pool.bitcoin.com/srv/api/user?apikey=%s" % self.api_key).json()
         return self.__api_data
 
-    def _get_addr_coins_and_tokens_balance(self) -> List[Tuple[str, Decimal]]:
+    def _get_addr_coins_and_tokens_balance(self):
         result = self._get_api_data()
         response = []
         if Decimal(result['bitcoinCashBalance']) != Decimal('0.0'):

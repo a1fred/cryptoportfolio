@@ -6,7 +6,7 @@ from cryptoportfolio.lib import coinmarketcap
 
 
 class CoinmarketcapTests(unittest.TestCase):
-    def assertCoinExists(self, symbol: str):
+    def assertCoinExists(self, symbol):
         price_usd = coinmarketcap.get_price_usd(symbol)
         self.assertIsInstance(price_usd, Decimal)
         self.assertGreater(price_usd, 0)

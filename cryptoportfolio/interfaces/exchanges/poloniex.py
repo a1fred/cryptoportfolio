@@ -1,6 +1,12 @@
-from typing import Tuple, Iterable
 from decimal import Decimal
-from urllib.parse import urlencode
+
+try:
+    # Py 3
+    from urllib.parse import urlencode
+except ImportError:
+    # Py 2.7
+    from urllib import urlencode
+
 import time
 import hmac
 import hashlib
@@ -14,10 +20,10 @@ class PoloniexWallet(Address):
     decimal_places = 18
     __api_response = None
 
-    def __init__(self, api_key: str, api_secret: str, **kwargs) -> None:
+    def __init__(self, api_key, api_secret, **kwargs):
         self.api_key = api_key
-        self.api_secret: str = api_secret
-        super().__init__(**kwargs)
+        self.api_secret = api_secret
+        super(PoloniexWallet, self).__init__(**kwargs)
 
     def balance_request(self):
         if self.__api_response is None:
@@ -42,5 +48,6 @@ class PoloniexWallet(Address):
             if balance_dec != Decimal("0.0"):
                 yield symbol, balance_dec
 
-    def _get_addr_coins_and_tokens_balance(self) -> Iterable[Tuple[str, Decimal]]:
-        yield from self.balance_request()
+    def _get_addr_coins_and_tokens_balance(self):
+        for balance_item in self.balance_request():
+            yield balance_item
