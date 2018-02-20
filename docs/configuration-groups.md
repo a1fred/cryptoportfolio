@@ -83,6 +83,16 @@ Options:
     nem wallet address
 
 
+#### [Reddcoin](https://www.reddcoin.com/)
+Reddcoin address  
+Interface name: `reddcoin`  
+Works using undocumnted balance request on [https://live.reddcoin.com/](https://live.reddcoin.com/)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    reddcoin wallet address
+
+
 # Mining pools
 cryptoportfolio can show your mining pool confirmed balance.
 
