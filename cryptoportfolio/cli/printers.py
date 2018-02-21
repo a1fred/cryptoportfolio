@@ -5,7 +5,6 @@ from decimal import Decimal
 
 from cryptoportfolio.utils.io import table
 from cryptoportfolio.interfaces import INTERFACES_MAPPING
-from cryptoportfolio.lib.coinmarketcap import get_price_usd
 from cryptoportfolio.utils.io import format_curr_balance, format_usd
 
 
@@ -21,7 +20,7 @@ def get_wallet_from_dict(wallet_data, defaults):
     return INTERFACES_MAPPING[interface](**data)
 
 
-def address_query(wallets, defaults):
+def address_query(wallets, defaults, get_price_usd):
     for wallet_dict in wallets:
         wallet = get_wallet_from_dict(wallet_dict, defaults)
         for symbol, balance in wallet.get_coins_and_tokens_balance():
@@ -37,9 +36,9 @@ def address_query(wallets, defaults):
             )
 
 
-def result_iterator(groups, defaults):
+def result_iterator(groups, defaults, get_price_usd):
     for group_name, wallets in groups:
-        yield group_name, address_query(wallets, defaults)
+        yield group_name, address_query(wallets, defaults, get_price_usd)
 
 
 def summarize_cells(groups):

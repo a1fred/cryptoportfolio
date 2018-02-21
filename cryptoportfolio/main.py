@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import sys
 from yaml import BaseLoader
 
 from cryptoportfolio.cli.printers import (
@@ -9,7 +10,8 @@ from cryptoportfolio.cli.printers import (
     sort_cells,
     print_results,
 )
-from cryptoportfolio.lib.coinmarketcap import get_price_usd
+
+from cryptoportfolio.lib.convert import CONVERTORS_MAPPING
 
 
 def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_total, print_group_total):
@@ -21,15 +23,25 @@ def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_t
         defaults = settings.get('defaults', {})
         groups = settings.get('groups', {})
         tickers = settings.get('tickers', {})
+        converting = settings.get('converting', 'coinmarketcap')
     except AttributeError:
         # AttributeError: 'str' object has no attribute 'get' raises if wrong file type
         print("Wrong configuration file type")
         return
 
+    if converting not in CONVERTORS_MAPPING:
+        print("Unknown convetror %s, possible values are: %s" % (
+            converting,
+            "|".join(CONVERTORS_MAPPING.keys())
+        ))
+        sys.exit(1)
+    else:
+        get_price_usd = CONVERTORS_MAPPING[converting]
+
     if not groups and not tickers:
         print("No groups and no tickers is defined. Exiting.")
 
-    results = result_iterator(groups.items(), defaults)
+    results = result_iterator(groups.items(), defaults, get_price_usd)
     if summarize:
         results = summarize_cells(results)
     if hide_zeros:

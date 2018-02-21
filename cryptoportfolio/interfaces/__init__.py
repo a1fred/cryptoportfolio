@@ -12,6 +12,7 @@ from cryptoportfolio.interfaces.wallets import (
     stellar,
     nem,
     reddcoin,
+    hyperstake,
 )
 
 from cryptoportfolio.interfaces.exchanges import (
@@ -31,4 +32,5 @@ INTERFACES_MAPPING = {
     'poloniex': poloniex.PoloniexWallet,
     'nem': nem.NemWallet,
     'reddcoin': reddcoin.ReddcoinWallet,
+    'hyperstake': hyperstake.HyperstakeWallet,
 }

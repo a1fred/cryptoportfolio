@@ -93,6 +93,16 @@ Options:
     reddcoin wallet address
 
 
+#### [Hyperstake](http://hyperstake.io/)
+Hyperstake address  
+Interface name: `hyperstake`  
+Works using balance request on [https://prohashing.com/explorer/](https://prohashing.com/explorer/)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    hyperstake wallet address
+
+
 # Mining pools
 cryptoportfolio can show your mining pool confirmed balance.
 
