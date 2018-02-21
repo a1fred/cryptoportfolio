@@ -2,7 +2,7 @@ import unittest
 
 from decimal import Decimal
 
-from cryptoportfolio.lib import coinmarketcap
+from cryptoportfolio.lib.convert import coinmarketcap
 
 
 class CoinmarketcapTests(unittest.TestCase):

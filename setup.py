@@ -20,6 +20,7 @@ setup(
         'cryptoportfolio.interfaces.exchanges',
         'cryptoportfolio.cli',
         'cryptoportfolio.lib',
+        'cryptoportfolio.lib.convert',
         'cryptoportfolio.utils',
     ],
     url='https://github.com/a1fred/cryptoportfolio',
