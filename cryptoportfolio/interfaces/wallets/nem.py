@@ -11,7 +11,6 @@ class NemWallet(CryptoCoinWallet):
     decimal_places = 18
 
     def _get_addr_coins_and_tokens_balance(self):
-        # type: (...) ->  typing.List[typing.Tuple[str, Decimal]]
         data = requests.post(
             "http://explorer.ournem.com/account/detail",
             headers={

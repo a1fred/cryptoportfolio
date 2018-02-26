@@ -13,10 +13,12 @@ from cryptoportfolio.interfaces.wallets import (
     nem,
     reddcoin,
     hyperstake,
+    cardano,
 )
 
 from cryptoportfolio.interfaces.exchanges import (
     poloniex,
+    bittrex,
 )
 
 
@@ -30,7 +32,9 @@ INTERFACES_MAPPING = {
     'magi': magi.MagiWallet,
     'stellar': stellar.StellarWallet,
     'poloniex': poloniex.PoloniexWallet,
+    'bittrex': bittrex.BittrexWallet,
     'nem': nem.NemWallet,
     'reddcoin': reddcoin.ReddcoinWallet,
     'hyperstake': hyperstake.HyperstakeWallet,
+    'cardano': cardano.CardanoWallet,
 }

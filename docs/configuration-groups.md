@@ -102,6 +102,14 @@ Options:
  * `addr` required, string
     hyperstake wallet address
 
+#### [Cardano](https://www.cardanohub.org/)
+Cardano address  
+Interface name: `cardano`  
+Works using balance request on [https://cardanoexplorer.com](https://cardanoexplorer.com)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    cardano wallet address
 
 # Mining pools
 cryptoportfolio can show your mining pool confirmed balance.
@@ -143,6 +151,17 @@ cryptoportfolio can show your exchange deposits
 Interface name: `poloniex`  
 Works using [api](https://poloniex.com/support/api/)  
 You can get api keys in [api settings page](https://poloniex.com/apiKeys)  
+Options:
+ * [universal options](#universal-options)
+ * `api_key` required, string
+   API key  
+ * `api_secret` required, string  
+   API secret
+
+#### [bittrex.com](https://bittrex.com)
+Interface name: `bittrex`  
+Works using [python-bittrex api wrapper](https://github.com/ericsomdahl/python-bittrex)  
+You can get api keys in [api settings page](https://bittrex.com/Manage#sectionApi)  
 Options:
  * [universal options](#universal-options)
  * `api_key` required, string

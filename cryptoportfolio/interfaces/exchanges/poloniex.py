@@ -5,7 +5,7 @@ try:
     from urllib.parse import urlencode
 except ImportError:
     # Py 2.7
-    from urllib import urlencode
+    from urllib import urlencode  # type: ignore
 
 import time
 import hmac

@@ -4,7 +4,7 @@ from cryptoportfolio.utils.io import format_curr_balance
 
 
 class Address(object):
-    decimal_places = None
+    decimal_places = None  # type: int
     symbol = None
 
     def __init__(self, percent_owned=Decimal('100'), decimal_places=None, name=None):

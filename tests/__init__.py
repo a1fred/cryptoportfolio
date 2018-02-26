@@ -1,1 +1,1 @@
-from tests import test_cli, test_lib
+from tests import test_cli, test_lib  # noqa
