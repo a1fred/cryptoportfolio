@@ -5,7 +5,6 @@ version = '0.3.0'
 requirements = [
     'requests',
     'monotable',
-    'python-bittrex==0.3.0',
     'PyYAML==3.12',
 ]
 

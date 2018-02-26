@@ -1,5 +1,5 @@
 from decimal import Decimal
-from bittrex.bittrex import Bittrex, API_V2_0
+from cryptoportfolio.lib.bittrex import Bittrex, API_V2_0
 
 from cryptoportfolio.interfaces.base import Address
 
