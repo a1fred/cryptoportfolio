@@ -14,6 +14,7 @@ from cryptoportfolio.interfaces.wallets import (
     reddcoin,
     hyperstake,
     cardano,
+    crds,
 )
 
 from cryptoportfolio.interfaces.exchanges import (
@@ -37,4 +38,5 @@ INTERFACES_MAPPING = {
     'reddcoin': reddcoin.ReddcoinWallet,
     'hyperstake': hyperstake.HyperstakeWallet,
     'cardano': cardano.CardanoWallet,
+    'crds': crds.CreditsWallet,
 }

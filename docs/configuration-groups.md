@@ -111,6 +111,16 @@ Options:
  * `addr` required, string
     cardano wallet address
 
+#### [Credits (CRDS)](https://crds.co/)
+CRDS address  
+Interface name: `crds`  
+Works using official explorer api [http://explorer.crds.co/](http://explorer.crds.co/)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    CRDS wallet address
+
+
 # Mining pools
 cryptoportfolio can show your mining pool confirmed balance.
 
