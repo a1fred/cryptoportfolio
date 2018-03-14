@@ -18,6 +18,10 @@ class NemWallet(CryptoCoinWallet):
             },
             data='{"address": "%s"}' % str(self.addr).replace('-', '')
         ).json()
+        if data == 'Not Found':
+            return [
+                ("XEM", Decimal("0.0")),
+            ]
 
         return [
             ("XEM", Decimal(data['balance']) * Decimal("0.000001")),
