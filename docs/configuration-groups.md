@@ -93,6 +93,16 @@ Options:
     reddcoin wallet address
 
 
+#### [Radium](https://radiumcore.org/)
+Radium address  
+Interface name: `reddcoin`  
+Works using api balance request on [https://chainz.cryptoid.info/](https://chainz.cryptoid.info/)
+Options:
+ * [universal options](#universal-options)
+ * `addr` required, string
+    radium wallet address
+
+
 #### [Hyperstake](http://hyperstake.io/)
 Hyperstake address  
 Interface name: `hyperstake`  
