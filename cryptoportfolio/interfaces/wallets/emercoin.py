@@ -10,7 +10,7 @@ class EmercoinWallet(CryptoCoinWallet):
 
     def _get_addr_coins_and_tokens_balance(self):
         data = requests.get(
-            "https://emercoin.mintr.org/api/address/balance/%s" % self.addr
+            "https://explorer.emercoin.com/api/address/balance/%s" % self.addr
         ).json()
         return [
             ("EMC", Decimal(data['balance'])),
