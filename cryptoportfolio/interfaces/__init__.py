@@ -21,6 +21,7 @@ from cryptoportfolio.interfaces.wallets import (
 from cryptoportfolio.interfaces.exchanges import (
     poloniex,
     bittrex,
+    binance,
 )
 
 
@@ -35,6 +36,7 @@ INTERFACES_MAPPING = {
     'stellar': stellar.StellarWallet,
     'poloniex': poloniex.PoloniexWallet,
     'bittrex': bittrex.BittrexWallet,
+    'binance': binance.BinanceWallet,
     'nem': nem.NemWallet,
     'radium': radium.RadiumWallet,
     'reddcoin': reddcoin.ReddcoinWallet,

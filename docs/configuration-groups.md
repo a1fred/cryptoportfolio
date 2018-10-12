@@ -189,6 +189,17 @@ Options:
  * `api_secret` required, string  
    API secret
 
+#### [binance.com](https://binance.com)
+Interface name: `binance`  
+Works using [official api](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md)  
+You can get api keys in [api settings page](https://www.binance.com/userCenter/createApi.html)  
+Options:
+ * [universal options](#universal-options)
+ * `api_key` required, string
+   API key  
+ * `api_secret` required, string  
+   API secret
+
 ## Example
 ```yml
 groups:

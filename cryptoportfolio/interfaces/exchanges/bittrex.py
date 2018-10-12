@@ -14,6 +14,7 @@ class BittrexWallet(Address):
 
     def balance_request(self):
         resp = self.bittrex.get_balances()
+
         for curr in resp['result']:
             symbol = curr['Currency']['Currency']
             balance = Decimal(curr['Balance']['Balance'])
