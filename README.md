@@ -51,7 +51,3 @@ ZIBER  468.5654       0.00$
 Total: 32021331.96$
 ```
 
-### TODO
-* Add more coins and pools
-* Add siacoin when there is block explorer
-* Docs for library usage
