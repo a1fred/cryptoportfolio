@@ -14,7 +14,7 @@ Tool for show your cryptocoins portfolio. Easily integrates with
 * Automatically find all tokens on ethereum or stellar wallets
 * Show your owned balance from shared wallet by settings percent-owned
 * Simple api easy to use as library in your project
-* Coins and tokens information from [https://coinmarketcap.com/](https://coinmarketcap.com/)
+* Coins and tokens information from [https://coinmarketcap.com/](https://coinmarketcap.com/) or [https://www.cryptocompare.com/](https://www.cryptocompare.com/)
 
 ### Supported wallets:
 Cryptoportfolio can show your coins from wallets and mining pools.  
@@ -23,7 +23,7 @@ See full list of supported coins in [configuration-groups](docs/configuration-gr
 ### Set up
 ##### Installation
 ```shell
-$ pip3 install cryptoportfolio
+$ pip install cryptoportfolio
 ```
 
 ##### Configure
