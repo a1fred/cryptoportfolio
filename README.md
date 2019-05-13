@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/pyversions/cryptoportfolio.svg)](https://pypi.python.org/pypi/cryptoportfolio/0.2.7)
 
 
-Tool for show your coins portfilio. Easily integrates with
+Tool for show your cryptocoins portfolio. Easily integrates with
 [conky](https://github.com/brndnmtthws/conky) or 
 [geektool](https://www.tynsoe.org/v2/geektool/).  
 
