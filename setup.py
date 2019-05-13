@@ -5,7 +5,7 @@ version = '0.3.6'
 requirements = [
     'requests',
     'monotable',
-    'pyyaml>=4.2b1
+    'pyyaml>=4.2b1',
 
 
 setup(
