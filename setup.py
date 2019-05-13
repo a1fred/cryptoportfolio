@@ -6,6 +6,7 @@ requirements = [
     'requests',
     'monotable',
     'pyyaml>=4.2b1',
+]
 
 
 setup(
