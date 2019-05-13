@@ -15,11 +15,12 @@ class BittrexWallet(Address):
     def balance_request(self):
         resp = self.bittrex.get_balances()
 
-        for curr in resp['result']:
-            symbol = curr['Currency']['Currency']
-            balance = Decimal(curr['Balance']['Balance'])
-            if balance != 0.0:
-                yield (symbol, balance)
+        if 'result' in resp and resp['result']:
+            for curr in resp['result']:
+                symbol = curr['Currency']['Currency']
+                balance = Decimal(curr['Balance']['Balance'])
+                if balance != 0.0:
+                    yield (symbol, balance)
 
     def _get_addr_coins_and_tokens_balance(self):
         for balance_item in self.balance_request():

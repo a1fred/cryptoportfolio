@@ -35,7 +35,8 @@ class BinanceWallet(Address):
 
     def _get_addr_coins_and_tokens_balance(self):
         resp = self._request('get', "https://api.binance.com/api/v3/account")
-        for asset in resp['balances']:
-            balance = Decimal(asset['free'])
-            if balance != 0:
-                yield asset['asset'], balance
+        if 'balances' in resp and resp['balances']:
+            for asset in resp['balances']:
+                balance = Decimal(asset['free'])
+                if balance != 0:
+                    yield asset['asset'], balance
