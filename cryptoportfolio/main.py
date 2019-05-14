@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 from yaml import BaseLoader
+from decimal import Decimal
 
 from cryptoportfolio.cli.printers import (
     result_iterator,
@@ -56,7 +57,7 @@ def main(settings_path, summarize, hide_zeros, hide_usd_zeros, sort, print_all_t
     if tickers:
         print("\nTickers:")
         for symbol in tickers:
-            print(" * %-4s $%s" % (symbol, get_price_usd(symbol)))
+            print(" * %-4s $%s" % (symbol, get_price_usd(symbol).quantize(Decimal('0.00'))))
 
 
 def cli():
