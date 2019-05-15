@@ -16,6 +16,7 @@ from cryptoportfolio.interfaces.wallets import (
     hyperstake,
     cardano,
     crds,
+    qtum,
 )
 
 from cryptoportfolio.interfaces.exchanges import (
@@ -43,4 +44,5 @@ INTERFACES_MAPPING = {
     'hyperstake': hyperstake.HyperstakeWallet,
     'cardano': cardano.CardanoWallet,
     'crds': crds.CreditsWallet,
+    'qtum': qtum.QtumWallet,
 }
