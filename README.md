@@ -11,6 +11,7 @@ Tool for show your cryptocoins portfolio. Easily integrates with
 
 ### Features
 * Show balance on coin wallets,exchanges and mining pools
+* Safe. Does not need private keys or any wallet access, for exchanges you can use read-only keys
 * Automatically find all tokens on ethereum or stellar wallets
 * Show your owned balance from shared wallet by settings percent-owned
 * Simple api easy to use as library in your project
